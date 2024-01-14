@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <AssemblyName>LethalRockAndStone</AssemblyName>
+        <Description>LethalRockAndStone mod</Description>
+        <Version>1.0.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="resources\rockandstone" />
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DebugType>embedded</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DebugType>embedded</DebugType>
+    </PropertyGroup>
+  
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+        <PackageReference Include="BepInEx.Core" Version="5.*" />
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+        <PackageReference Include="UnityEngine.Modules" Version="2022.3.9" IncludeAssets="compile" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\Assembly-CSharp-nstrip.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="DissonanceVoip">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\DissonanceVoip.dll</HintPath>
+    </Reference>
+    <Reference Include="LethalCompanyInputUtils">
+      <HintPath>C:\Users\figaR\AppData\Roaming\r2modmanPlus-local\LethalCompany\profiles\MyTest\BepInEx\plugins\Rune580-LethalCompany_InputUtils\LethalCompanyInputUtils\LethalCompanyInputUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="MMHOOK_AmazingAssets.TerrainToMesh">
+      <HintPath>C:\Users\figaR\AppData\Roaming\r2modmanPlus-local\LethalCompany\profiles\MyTest\BepInEx\plugins\MMHOOK\MMHOOK_AmazingAssets.TerrainToMesh.dll</HintPath>
+    </Reference>
+    <Reference Include="MMHOOK_Assembly-CSharp">
+      <HintPath>C:\Users\figaR\AppData\Roaming\r2modmanPlus-local\LethalCompany\profiles\MyTest\BepInEx\plugins\MMHOOK\MMHOOK_Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MMHOOK_ClientNetworkTransform">
+      <HintPath>C:\Users\figaR\AppData\Roaming\r2modmanPlus-local\LethalCompany\profiles\MyTest\BepInEx\plugins\MMHOOK\MMHOOK_ClientNetworkTransform.dll</HintPath>
+    </Reference>
+    <Reference Include="MMHOOK_DissonanceVoip">
+      <HintPath>C:\Users\figaR\AppData\Roaming\r2modmanPlus-local\LethalCompany\profiles\MyTest\BepInEx\plugins\MMHOOK\MMHOOK_DissonanceVoip.dll</HintPath>
+    </Reference>
+    <Reference Include="MMHOOK_Facepunch Transport for Netcode for GameObjects">
+      <HintPath>C:\Users\figaR\AppData\Roaming\r2modmanPlus-local\LethalCompany\profiles\MyTest\BepInEx\plugins\MMHOOK\MMHOOK_Facepunch Transport for Netcode for GameObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="MMHOOK_Facepunch.Steamworks.Win64">
+      <HintPath>C:\Users\figaR\AppData\Roaming\r2modmanPlus-local\LethalCompany\profiles\MyTest\BepInEx\plugins\MMHOOK\MMHOOK_Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Components">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Unity.Netcode.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Runtime">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Unity.Netcode.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Networking.Transport">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Unity.Networking.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;C:\Users\figaR\AppData\Roaming\r2modmanPlus-local\LethalCompany\profiles\MyTest\BepInEx\plugins\$(ProjectName).dll&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)\publish\$(ProjectName).dll&quot;&#xD;&#xA;copy /Y &quot;$(SolutionDir)\README.md&quot; &quot;$(SolutionDir)\publish\README.md&quot;" />
+    </Target>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+      <Exec Command="copy /Y &quot;E:\coding\studio\Lethal Company Mods\ExampleScrapPluginUnity\AssetBundles\StandaloneWindows\rockandstone&quot; &quot;$(SolutionDir)\$(ProjectName)\resources\rockandstone&quot;" />
+    </Target>
+</Project>

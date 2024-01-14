@@ -1,0 +1,11 @@
+{
+    "name": "LethalRockAndStone",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/Azim/LethalRockAndStone",
+    "description": "Mod for playing RockAndStone voiceline when pressing a keybind (V by default)",
+    "dependencies": [
+		"BepInEx-BepInExPack-5.4.2100",
+		"Evaisa-HookGenPatcher-0.0.5",
+		"Rune580-LethalCompany_InputUtils-0.5.4"
+	]
+}
