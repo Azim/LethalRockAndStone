@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -293,12 +294,11 @@ namespace LethalRockAndStone
                 if (player.playerSteamId != steamIdOfSender) continue;
 
                 player.itemAudio.PlayOneShot(clip, VoiceVolume);
-
+                RoundManager.Instance.PlayAudibleNoise(player.transform.position, 22f, 0.6f, 0, player.isInHangarShipRoom && player.playersManager.hangarDoorsClosed, 6);
                 WalkieTalkie.TransmitOneShotAudio(player.itemAudio, clip, VoiceVolume);
             }
-            //TODO walkie talkie
-
         }
+
         public void playerConnected(On.GameNetcodeStuff.PlayerControllerB.orig_ConnectClientToPlayerObject orig, PlayerControllerB self)
         {
             orig(self);
